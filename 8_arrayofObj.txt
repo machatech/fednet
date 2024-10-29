@@ -1,0 +1,61 @@
+
+ArrayOfObjectsDemo.jsx:
+
+
+import React, { Component } from "react";
+
+class ArrayOfObjectsDemo extends Component {
+  // Define an array of student objects
+  students = [
+    { sno: 1, name: 'Krishna', branch: 'CSE' },
+    { sno: 2, name: 'Balaram', branch: 'IT' },
+    { sno: 3, name: 'Ayaan', branch: 'ECE' }
+  ];
+
+  render() {
+    return (
+      <div>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>SNO</th>
+              <th>NAME</th>
+              <th>BRANCH</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              // Iterate over the student objects and render each as a row in the table
+              this.students.map((student) => (
+                <tr key={student.sno}>
+                  <td>{student.sno}</td>
+                  <td>{student.name}</td>
+                  <td>{student.branch}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default ArrayOfObjectsDemo;
+
+
+APP.js:
+
+import React from 'react';
+import './App.css';
+import ArrayOfObjectsDemo from './ArrayOfObjectsDemo';
+
+function App() {
+  return (
+    <div className="App">
+      <ArrayOfObjectsDemo />
+    </div>
+  );
+}
+
+export default App;

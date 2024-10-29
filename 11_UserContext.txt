@@ -1,0 +1,104 @@
+parent.jsx:
+
+import React from 'react'; // Added import for React
+import { UserContext } from "./UserContext"; // Corrected import syntax
+import UserProfile from "./UserProfile";
+
+const Parent = () => {
+    const user = { name: 'Bhavya datla', qualification: 'Under Graduate' }; 
+    return (
+        <UserContext.Provider value={user}> {/* Fixed Provider syntax */}
+            <UserProfile />
+        </UserContext.Provider>
+    );
+}
+
+export default Parent;
+
+
+UserContext.jsx:
+
+import React from 'react';
+export const UserContext = React.createContext();
+
+
+UserProfile.jsx:
+
+
+import React, { useContext } from 'react';
+import { UserContext } from './UserContext';
+
+const UserProfile = () => {
+    const user = useContext(UserContext); // Corrected useContext usage
+
+    return (
+        <div>
+            <h2>User Profile</h2>
+            <p>Name: {user.name}</p>
+            <p>Qualification: {user.qualification}</p>
+        </div>
+    );
+}
+
+export default UserProfile;
+
+
+APP.js:
+
+import React from 'react';
+import Parent from './Parent';
+
+const App = () => {
+  return (
+    <div>
+      <h1>User Management</h1>
+      <Parent />
+    </div>
+  );
+};
+
+export default App;
+
+
+APP.css:
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

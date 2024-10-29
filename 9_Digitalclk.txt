@@ -1,0 +1,74 @@
+DigitalClock.jsx:
+
+import { Component } from 'react';
+class DigitalClock extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            time:new Date(),
+        };
+    }
+    componentDidMount(){
+        this.timerId=setInterval(()=>this.tick(),1000);
+    }
+    tick=()=>{
+        this.setState({time:new Date()});
+    };
+    componentWillUnmount(){
+        clearInterval(this.timerId);
+    }
+    render(){
+        const {time}=this.state;
+        const hours=String(time.getHours()).padStart(2,'0');
+        const minutes=String(time.getMinutes()).padStart(2,'0');
+        const seconds=String(time.getSeconds()).padStart(2,'0');
+        return(
+            <div>
+                <h1>
+                    {hours[0]+hours[1]}:
+                    {minutes[0]+minutes[1]}:
+                    {seconds[0]+seconds[1]}
+                </h1>
+            </div>
+        )
+    }
+}
+export default DigitalClock;
+
+
+APP.js:
+
+import React from 'react';
+import DigitalClock from './DigitalClock';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Digital Clock</h1>
+      <DigitalClock />
+    </div>
+  );
+};
+
+export default App;
+
+
+APP.css:
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label, input {
+  margin: 10px 0; /* Add some space between elements */
+}

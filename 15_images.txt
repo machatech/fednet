@@ -1,0 +1,84 @@
+ImageTable.jsx:
+
+
+
+import React from "react";
+
+const ImageTable = () => {
+    // Only include images 1, 2, and 3
+    const selectedImages = [
+        {
+            id: 1,
+            url: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+            title: "Image 1"
+        },
+        {
+            id: 2,
+            url: "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg",
+            title: "Image 2"
+        },
+        {
+            id: 3,
+            url: "https://fps.cdnpk.net/images/home/subhome-ai.webp?w=649&h=649",
+            title: "Image 3"
+        },
+    ];
+
+    return (
+        <div>
+            <h2>Image Gallery</h2>
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+                <thead>
+                    <tr>
+                        <th style={{ border: "1px solid black", width: "320px", padding: "10px" }}>ID</th>
+                        <th style={{ border: "1px solid black", width: "320px", padding: "10px" }}>Image</th>
+                        <th style={{ border: "1px solid black", width: "320px", padding: "10px" }}>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {selectedImages.map((image) => (
+                        <tr key={image.id}>
+                            <td style={{ border: "1px solid black", padding: "10px" }}>
+                                {image.id}
+                            </td>
+                            <td style={{ border: "1px solid black", padding: "10px" }}>
+                                <img
+                                    src={image.url}
+                                    alt={image.title}
+                                    style={{ width: "100px", height: "100px" }}
+                                />
+                            </td>
+                            <td style={{ border: "1px solid black", padding: "10px" }}>
+                                {image.title}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default ImageTable;
+
+
+
+APP.JS:
+
+
+import React from "react";
+import ImageTable from "./ImageTable"; // Ensure the path is correct
+
+const App = () => {
+  return (
+    <div>
+      <h1>Image Gallery Test</h1>
+      <ImageTable />
+    </div>
+  );
+};
+
+export default App;
+
+
+

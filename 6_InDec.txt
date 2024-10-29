@@ -1,0 +1,81 @@
+CounterClassComp.jsx:
+
+
+import React from 'react';
+
+// Define constants for the upper and lower limits
+const MAX_COUNT = 20;
+const MIN_COUNT = 1;
+
+class CounterClassComp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  // Handler for incrementing the count
+  incrementHandler = () => {
+    if (this.state.count < MAX_COUNT) {
+      this.setState({ count: this.state.count + 1 });
+    }
+  };
+
+  // Handler for decrementing the count
+  decrementHandler = () => {
+    if (this.state.count > MIN_COUNT) {
+      this.setState({ count: this.state.count - 1 });
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        <button onClick={this.incrementHandler} disabled={this.state.count >= MAX_COUNT}>
+          Increment
+        </button>
+        &nbsp;&nbsp;
+        <button onClick={this.decrementHandler} disabled={this.state.count <= MIN_COUNT}>
+          Decrement
+        </button>
+      </div>
+    );
+  }
+}
+
+export default CounterClassComp;
+
+
+APP.js:
+
+import React from 'react';
+import './App.css';
+import CounterClassComp from './CounterClassComp';
+
+function App() {
+  return (
+    <div className="App">
+      <CounterClassComp />
+    </div>
+  );
+}
+
+export default App;
+
+
+APP.css:
+
+.App {
+  text-align: center;
+  margin-top: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+
+

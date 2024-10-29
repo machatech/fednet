@@ -1,0 +1,81 @@
+ColorChange.JSX:
+
+
+import React, { Component } from 'react';
+
+class ColorChange extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: '#000000' // Initial color set to black
+    };
+  }
+
+  setRed = () => {
+    this.setState({ color: '#FF0000' });
+  }
+
+  setGreen = () => {
+    this.setState({ color: '#00FF00' });
+  }
+
+  setBlue = () => {
+    this.setState({ color: '#0000FF' });
+  }
+
+  render() {
+    const { color } = this.state;
+    return (
+      <div>
+        <h1 style={{ color }}>Welcome to the DEPARTMENT</h1>
+        <button onClick={this.setRed}>RED</button>
+        &nbsp; &nbsp;
+        <button onClick={this.setGreen}>GREEN</button>
+        &nbsp; &nbsp;
+        <button onClick={this.setBlue}>BLUE</button>
+      </div>
+    );
+  }
+}
+
+export default ColorChange;
+
+
+APP.js:
+
+import React from 'react';
+import './App.css';
+import ColorChange from './ColorChange'; // Ensure the correct import path
+
+function App() {
+  return (
+    <div className="App">
+      <ColorChange />
+    </div>
+  );
+}
+
+export default App;
+
+
+App.css:
+
+/* App.css */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}

@@ -1,0 +1,84 @@
+ BMICalcDemo.JSX:
+
+
+import React, { useState } from 'react';
+
+function BMICalcDemo() {
+    const [height, setHeight] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [name, setName] = useState("");
+
+    const calculateBMI = () => {
+        const heightSquared = (height / 100) * (height / 100);
+        const bmi = weight / heightSquared;
+        
+        let message = `Hi, ${name}... `;
+        
+        if (bmi < 16) {
+            message += "You are completely Underweight (Severe Thinness)";
+        } else if (bmi >= 16 && bmi < 17) {
+            message += "You are Moderately Underweight (Moderate Thinness)";
+        } else if (bmi >= 17 && bmi < 18.5) {
+            message += "You are slightly Underweight (Mild Thinness)";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            message += "You are in a healthy weight range";
+        } else if (bmi >= 25 && bmi < 30) {
+            message += "You are overweight";
+        } else {
+            message += "You are obese";
+        }
+        
+        window.alert(message);
+    }
+
+    const submitMe = (e) => {
+        e.preventDefault();
+        calculateBMI();
+    }
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+
+    const handleHeight = (e) => {
+        setHeight(e.target.value);
+    }
+
+    const handleWeight = (e) => {
+        setWeight(e.target.value);
+    }
+
+    return (
+        <div className="App">
+            <h1>BMI Calculator</h1>
+            <form onSubmit={submitMe}>
+                <label>Please enter your name:</label>
+                <input type="text" name="name" value={name} onChange={handleName} />
+                <br /><br />
+                <label>Enter your height in cm:</label>
+                <input type="text" name="height" value={height} onChange={handleHeight} />
+                <br /><br />
+                <label>Enter your weight in kg:</label>
+                <input type="text" name="weight" value={weight} onChange={handleWeight} />
+                <br /><br />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    );
+}
+
+export default BMICalcDemo;
+
+
+APP.js:
+
+import './App.css';
+import BMICalcDemo from './BMICalcDemo';
+function App() {
+  return (
+    <div className="App">
+      <BMICalcDemo/>
+    </div>
+  );
+}
+export default App;
